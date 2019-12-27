@@ -31,7 +31,7 @@ def GetFiles(dirname):
 
 def SaveFile(content,filename):
     with codecs.open(filename,'wb',encoding='gbk') as f:
-        json.dump(content,fp=f,indent=4)
+        json.dump(content,fp=f,indent='\t')
 
 def GetData(path = "data.json"):
     try:
@@ -68,12 +68,12 @@ def RepairFile(coordinates,distance_,dist):
     ## 查找 N2-N 的距离是否小于2*dist, 因为删除点位迭代过程, 固使用for完成
     flag = True ## 修复标识位
     for index in distance_.index:
-        ## 由于每次删除 异常坐标,所以index会发生变化，此处应该用iloc 而不能使用 loc
+        ## 由于每次删除 异常坐标,所以index会发生变化，此处应该用iloc查询 N和N2点 ，而不能使用 loc
         iloc_index =coordinates.index.get_indexer([index])[0]
         N = coordinates.iloc[iloc_index-1,:2]
         N2 = coordinates.iloc[iloc_index+1,:2]
         d_ = pow((N2-N).pow(2).sum(),0.5) ## 计算N2-N的距离
-        if d_>= 2*dist: ## 只要出现 N2-N 不超过2*dist即可认为该文件不可修复
+        if d_>= 2*dist: ## 只要出现 N2-N 超过2*dist 即可认为该文件不可修复
             flag = False
             break
         else:

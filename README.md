@@ -5,10 +5,10 @@
 # 脚本结构说明：
     
     │ geojson					程序所在根目录
-		│ common.py 			通用函数库
+		│ common.py 				通用函数库
 		│ core.py 				核心逻辑库
 		│ main.py 				任务主脚本
-		│ sqllib.py 			sqlite3封装
+		│ sqllib.py 				sqlite3封装
 		│ user.db 	 			备份数据库
      
      注意： 备份数据库 user.db 用于存储已处理过的文件信息, 用以加速数据处理过程

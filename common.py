@@ -60,7 +60,7 @@ def GetStatistics(df,tagfile = ''):
     res['pre'] = (res['count']/len(df)*100).round(1).astype(str)+"%"
     print ("\n\n****************标签统计结果 **************** \n{}".format(res))
     if len(tagfile):
-        res.to_csv(tagfile,index=False)
+        res.to_csv(tagfile,index=False,encoding ='gbk')
     print("\n")
 
 def RepairFile(coordinates,distance_,dist):
